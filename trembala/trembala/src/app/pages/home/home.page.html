@@ -9,12 +9,33 @@
     <ion-card-header>
       <ion-card-title>Julio Cesar de Sousa Oliveira</ion-card-title>
       <ion-card-subtitle>Matricula:24109269</ion-card-subtitle>
+       <ion-card-subtitle>Turno: Manhã</ion-card-subtitle>
+        <ion-card-subtitle>Unidade; Bangu</ion-card-subtitle>
+      <ion-card-subtitle>Meu cep é 21770190,moro na rua leocadia, deixei aqui para voce ver onde moro pela api que apliquei</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-    <img src="assets/minha-foto.jpg" alt="Minha Foto" style="width: 150px; height: auto; border-radius: 10px;margin-left: 50px;" />
-    <ion-button expand="full" routerLink="/sobre">Ir para Sobre </ion-button>
+      <img src="assets/minha-foto.jpg" alt="Minha Foto"
+           style="width: 150px; height: auto; border-radius: 10px; margin-left: 50px;" />
+      <ion-button expand="full" routerLink="/sobre">Ir para Sobre</ion-button>
     </ion-card-content>
   </ion-card>
 
- 
+  <!-- NOVA SEÇÃO: Consulta de CEP -->
+  <ion-item>
+    <ion-label position="floating">Digite o CEP</ion-label>
+    <ion-input type="text" [(ngModel)]="cep" (ionInput)="resetResponse()"></ion-input>
+  </ion-item>
+  <ion-button expand="full" (click)="consultarCep()">Consultar CEP</ion-button>
+
+  <div *ngIf="dados" style="margin-top: 20px;">
+    <h2>Dados do CEP</h2>
+    <p><strong>Logradouro:</strong> {{ dados.logradouro }}</p>
+    <p><strong>Bairro:</strong> {{ dados.bairro }}</p>
+    <p><strong>Cidade:</strong> {{ dados.localidade }}</p>
+    <p><strong>Estado:</strong> {{ dados.uf }}</p>
+  </div>
+
+  <div *ngIf="errorMessage" style="color: red; margin-top: 20px;">
+    {{ errorMessage }}
+  </div>
 </ion-content>
